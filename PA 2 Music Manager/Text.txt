@@ -1,0 +1,3 @@
+THINGS TO POTENTIALLY DO FOR THIS ASSIGNMENT (From Office Hours)
+-Read the last name and first name as seperate strings and then strcat them together into one name
+-Make a temporary struct for copying over, with a field for first name, last name, and band name. First and last name will be concatenated later when copying over to the main struct

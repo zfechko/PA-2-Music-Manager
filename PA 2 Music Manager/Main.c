@@ -16,7 +16,7 @@ int main(void)
 	printf("%d", count);*/
 	/*testInsert();*/
 	/*testDelete();*/
-	//testShuffle();
+	/*testShuffle();*/
 	printMenu();
 
 	

@@ -300,5 +300,5 @@ Returns: the pointer to the array of random numbers
 Preconditions: this is a helper function to notScuffedShuffle
 Postconditions:
 * * * * * * * * * * * * * * */
-int* generateRandomOrder(List pList);
+void generateRandomOrder(List pList, int array[]);
 #endif

@@ -201,7 +201,7 @@ void printMenu()
 				{
 					system("cls");
 					printf("\n");
-					printf("Record edited successfull\n");
+					printf("Record edited successfully\n");
 				}
 			}
 			break;
@@ -226,6 +226,7 @@ void printMenu()
 			{
 				if (rateSong(&playlist) == 1)
 				{
+					system("cls");
 					printf("\n");
 					printf("Rating change successfully\n");
 				}
@@ -240,6 +241,7 @@ void printMenu()
 			{
 				if (playSong(playlist) == 1)
 				{
+					system("cls");
 					printf("\n");
 					printf("Reached the end of your playlist\n");
 					Sleep(2000);
@@ -255,6 +257,7 @@ void printMenu()
 			{
 				if (shuffle(playlist) == 1)
 				{
+					system("cls");
 					printf("\n");
 					printf("Reached the end of playlist\n");
 					Sleep(2000);
@@ -717,12 +720,11 @@ int notScuffedShuffle(List pList)
 {
 	Node* pCur = pList.pHead;
 	int position = 0, i = 0;
-	const int listSize = countSongs(pList);
-	int order[20] = generateRandomOrder(pList);
-	while (order[i] != 0)
+	int order[10];
+	generateRandomOrder(pList, order);
+	for(i = 0; i = 10; ++i)
 	{
 		printf("%d, ", order[i]);
-		++i;
 	}
 }
 
@@ -1089,18 +1091,16 @@ Postconditions:
 void generateRandomOrder(List pList, int array[])
 {
 	int i = 0, j = 0;
-	int order[50] = { 0 };
 	for (i = 0; i <= countSongs(pList); i++)
 	{
-		order[i] =  rand() % countSongs(pList) + 1; //we insert a random value into the array
+		array[i] =  rand() % countSongs(pList) + 1; //we insert a random value into the array
 		for (j = 0; j = i; j++) //j is for reading and checking for dupes in the list
 		{
-			if (order[j] == order[i]) //if we encounter a duplicate
+			if (array[j] == array[i]) //if we encounter a duplicate
 			{
-				order[i] = rand() % countSongs(pList) + 1; //we select an new random number
+				array[i] = rand() % countSongs(pList) + 1; //we select an new random number
 				break;
 			}
 		}
 	}
-	return order;
 }

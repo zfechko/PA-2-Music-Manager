@@ -7,15 +7,19 @@ Description: Using doubly linked lists to make a playlist manager
 * * * * * * * * * * * * * * * * * * * * * * */
 
 #include "Header.h"
-
+#include "TestFunctions.h"
 int main(void)
 {
 	int choice = 0;
-	 //sets the list to null so it's empty
-	printMenu();
+	srand(time(NULL)); //initializing the rand command
+	/*int count = testCountSongs();
+	printf("%d", count);*/
+	/*testInsert();*/
+	/*testDelete();*/
+	testShuffle();
+	/*printMenu();*/
+
 	
-
-
 
 
 

@@ -21,9 +21,15 @@
     <ClCompile Include="Functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestFunctions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,6 +38,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="testOutfile.csv">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testData.csv">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -141,12 +141,15 @@
   <ItemGroup>
     <ClCompile Include="Functions.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="TestFunctions.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h" />
+    <ClInclude Include="TestFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="music.csv" />
+    <None Include="testData.csv" />
     <None Include="testOutfile.csv" />
   </ItemGroup>
   <ItemGroup>

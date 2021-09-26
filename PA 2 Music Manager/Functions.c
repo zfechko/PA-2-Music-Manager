@@ -255,7 +255,7 @@ void printMenu()
 			}
 			else
 			{
-				if (shuffle(playlist) == 1)
+				if (notScuffedShuffle(playlist) == 1)
 				{
 					system("cls");
 					printf("\n");
@@ -719,14 +719,48 @@ Postconditions: nothing changes as a result of this function running
 int notScuffedShuffle(List pList)
 {
 	Node* pCur = pList.pHead;
-	int position = 0, i = 0;
-	int order[10];
-	generateRandomOrder(pList, order);
-	for(i = 0; i = 10; ++i)
+	pCur->pPrev = NULL;
+	int position = 1, i = 0, shufflePosition = 0;
+	int order[50];
+	generateRandomOrder(pList, order); //generates a random order for the size of the list
+	while (i <= countSongs(pList) - 1) //the reason we're subtracting 1 from countSongs is because i is the array index
 	{
-		printf("%d, ", order[i]);
+		shufflePosition = order[i];
+		while (pCur != NULL)
+		{
+			if (position == 1)
+			{
+				pCur->pPrev = NULL;
+			}
+			if (position < shufflePosition) //if the song is further towards the end of the list
+			{
+				pCur->pPrev = pCur; //we traverse forwards in the list
+				pCur = pCur->pNext;
+				++position;
+			}
+			else if (position > shufflePosition) //if the song is further towards the top of the list
+			{
+				pCur->pNext = pCur;
+				pCur = pCur->pPrev;
+				pCur->pPrev = pCur->pPrev->pPrev;
+				--position;
+			}
+			if (position == shufflePosition)
+			{
+				system("cls");
+				printf("Now Playing %s by %s", pCur->data.song, pCur->data.artist);
+				Sleep(2000);
+				
+				break;
+			}
+		}
+			
+		i++;
+		
 	}
+	return 1;
 }
+
 
 /* * * * * * * * * * * * * * *
 Function Name: rateSong
@@ -1088,19 +1122,25 @@ Returns: the pointer to the array of random numbers
 Preconditions: this is a helper function to notScuffedShuffle
 Postconditions:
 * * * * * * * * * * * * * * */
-void generateRandomOrder(List pList, int array[])
+void generateRandomOrder(List pList, int array[50])
 {
-	int i = 0, j = 0;
-	for (i = 0; i <= countSongs(pList); i++)
+	int i = 0, j = 0, number = 0;
+	for (i = 0; i < countSongs(pList); i++) //for loop to generate an order based on the size of the playlist
 	{
-		array[i] =  rand() % countSongs(pList) + 1; //we insert a random value into the array
-		for (j = 0; j = i; j++) //j is for reading and checking for dupes in the list
+		array[i] = rand() % countSongs(pList) + 1; //generate a random number
+		if (i == 0) //this is to prevent the for loop after this from looping infinitely
 		{
-			if (array[j] == array[i]) //if we encounter a duplicate
+			++i;
+			array[i] = rand() % countSongs(pList) + 1;
+		}
+		for (j = 0; j < i; j++)
+		{
+			if (array[j] == array[i]) //if we find a dupe
 			{
-				array[i] = rand() % countSongs(pList) + 1; //we select an new random number
-				break;
+				--i; //we decrement i so it overwrites itself
 			}
 		}
+
 	}
 }
+	

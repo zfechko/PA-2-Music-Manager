@@ -147,8 +147,10 @@ void testShuffle(void)
 {
 	List testList = { NULL };
 	initList(&testList);
-	if (loadPlaylist(&testList) == 1)
+	loadTest(&testList); //this loads in the 3 records in the testData.csv
+	int success = notScuffedShuffle(testList);
+	if (success == 1)
 	{
-		int success = notScuffedShuffle(testList);
+		printf("Reached end of playlist\n");
 	}
 }

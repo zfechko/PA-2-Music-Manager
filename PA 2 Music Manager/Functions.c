@@ -675,7 +675,7 @@ Input parameters: the list
 Returns: 1 for success, 0 for failure
 Preconditions: list must have been loaded in, this will not work with an empty list
 Postconditions:
-NOTE: This function is super scuffed and is not what I am using in my actual function, so we're going to keep this here for records and make a new one
+NOTE: This function is super scuffed and is not what I am using in my actual program, so I'm going to keep this here for records and make a new one
 * * * * * * * * * * * * * * */
 int shuffle(List pList)
 {

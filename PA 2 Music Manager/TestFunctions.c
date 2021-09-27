@@ -38,8 +38,11 @@ void testInsert(void)
 {
 	List testList = { NULL }; //create temp list for testing
 	initList(&testList); //initialize the list
-	loadTest(&testList);
-	int print = printPlaylist(testList);
+	int insert = addItem(&testList);
+	if (insert == 1)
+	{
+		int print = printPlaylist(testList);
+	}
 }
 
 /* * * * * * * * * * * * * * *
@@ -130,17 +133,15 @@ void testDelete(void)
 	/*When testing this function, nothing will come up on the terminal, press enter then it will procede like normal
 	This is intended because there's a user input field before the prompts to ignore a previous enter in main*/
 
-	if (addItem(&testList) == 1) //using this function to add the katy perry record to the list
+	
+	loadTest(&testList);
+	int success = deleteItem(&testList);
+	if (success == 1)
 	{
-		int success = deleteItem(&testList);
-		if (success = 1)
-		{
-			if (countSongs(testList) == 0)
-			{
-				printf("Record deleted successfully\n");
-			}
-		}
+		printf("Record deleted successfully\n");
+		int print = printPlaylist(testList);
 	}
+	
 }
 
 void testShuffle(void)
@@ -151,6 +152,6 @@ void testShuffle(void)
 	int success = notScuffedShuffle(testList);
 	if (success == 1)
 	{
-		printf("Reached end of playlist\n");
+		printf("Shuffle works just fine\n");
 	}
 }

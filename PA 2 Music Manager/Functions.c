@@ -346,7 +346,7 @@ int loadPlaylist(List* pList)
 	printf("Loading your playlist...\n");
 	Sleep(3000);
 	FILE* infile = fopen("music.csv", "r");
-	Temp newArtist = { NULL };
+	Temp newArtist = { "" };
 	int success = 0;
 	char line[100] = "";
 	while (fgets(line, 100, infile) != NULL)
@@ -465,7 +465,7 @@ void readCsv(FILE* infile, Temp array[])
 {
 	char line[100] = "";
 	int i = 0;
-	Temp newArtist = { NULL };
+	Temp newArtist = { "" };
 
 
 	while (fgets(line, 100, infile) != NULL)
@@ -505,11 +505,10 @@ Postconditions:
 void insertAtFront(List* pList, Temp newRecord)
 	{
 		Node* pMem = makeNode(&newRecord);
-		if (pList->pHead != NULL)
+		if (pList->pHead != NULL) //if there's content in the list
 		{
-			pMem->pNext = pList->pHead;
 			pList->pHead->pPrev = pMem;
-			
+			pMem->pNext = pList->pHead;
 		}
 
 		pList->pHead = pMem;
@@ -528,7 +527,7 @@ Notes: I looked at geeks4geeks to find out how to read a string with spaces, tha
 * * * * * * * * * * * * * * */
 int addItem(List* pList)
 {
-	Temp newRecord = { NULL };
+	Temp newRecord = { "" };
 	int success = 0;
 	fgets(newRecord.bandName, 100, stdin); //this is for ignoring the previous enter so we can read in the new line
 	printf("Enter the name of the artist you would like to add: ");
@@ -661,7 +660,6 @@ int countSongs(List pList)
 			{
 				return count;
 			}
-			pNode->pPrev = pNode;
 			pNode = pNode->pNext;
 	}
 	
@@ -677,7 +675,7 @@ Input parameters: the list
 Returns: 1 for success, 0 for failure
 Preconditions: list must have been loaded in, this will not work with an empty list
 Postconditions:
-NOTE: This function is super scuffed and is not what we want to use, so we're going to keep this here for records and make a new one
+NOTE: This function is super scuffed and is not what I am using in my actual function, so we're going to keep this here for records and make a new one
 * * * * * * * * * * * * * * */
 int shuffle(List pList)
 {
@@ -719,7 +717,6 @@ Postconditions: nothing changes as a result of this function running
 int notScuffedShuffle(List pList)
 {
 	Node* pCur = pList.pHead;
-	pCur->pPrev = NULL;
 	int position = 1, i = 0, shufflePosition = 0;
 	int order[50];
 	generateRandomOrder(pList, order); //generates a random order for the size of the list
@@ -728,21 +725,14 @@ int notScuffedShuffle(List pList)
 		shufflePosition = order[i];
 		while (pCur != NULL)
 		{
-			if (position == 1)
-			{
-				pCur->pPrev = NULL;
-			}
 			if (position < shufflePosition) //if the song is further towards the end of the list
 			{
-				pCur->pPrev = pCur; //we traverse forwards in the list
-				pCur = pCur->pNext;
+				pCur = pCur->pNext; //we traverse forwards in the list
 				++position;
 			}
 			else if (position > shufflePosition) //if the song is further towards the top of the list
 			{
-				pCur->pNext = pCur;
 				pCur = pCur->pPrev;
-				pCur->pPrev = pCur->pPrev->pPrev;
 				--position;
 			}
 			if (position == shufflePosition)
@@ -906,7 +896,7 @@ NOTE: Connor helped me with the way to sort during office hours, so if it's simi
 * * * * * * * * * * * * * * */
 int sortPlaylist(List* pList)
 {
-	Record temp = { NULL };
+	Record temp = { "" };
 	int isSorted = 0;
 	int choice;
 	system("cls");
@@ -920,11 +910,11 @@ int sortPlaylist(List* pList)
 			Node* pCur = pList->pHead, * pAfter = pCur->pNext;
 			while (pAfter != NULL)
 			{
-				if (strcmp(pCur->data.artist, pAfter->data.artist) > 0)
+				if (strcmp(pCur->data.artist, pAfter->data.artist) > 0) //if the data from pAfter is more towards 'A' than pCur
 				{
-					temp = pCur->data;
-					pCur->data = pAfter->data;
-					pAfter->data = temp;
+					temp = pCur->data; //copy the data from pCur to temp
+					pCur->data = pAfter->data; //set the data from pCur to the data from pAfter
+					pAfter->data = temp; //set pAfter to the temp variable 
 					isSorted = 0;
 				}
 				pCur = pAfter;
@@ -1137,7 +1127,7 @@ void generateRandomOrder(List pList, int array[50])
 		{
 			if (array[j] == array[i]) //if we find a dupe
 			{
-				--i; //we decrement i so it overwrites itself
+				--i; //we decrement i so it overwrites itself on the next pass
 			}
 		}
 

@@ -15,9 +15,9 @@ int main(void)
 	/*int count = testCountSongs();
 	printf("%d", count);*/
 	/*testInsert();*/
-	/*testDelete();*/
+	testDelete();
 	//testShuffle();
-	printMenu();
+	/*printMenu();*/
 
 	
 

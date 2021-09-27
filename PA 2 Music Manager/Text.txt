@@ -1,6 +1,6 @@
 THINGS LEFT TO DO WITH THIS PA
 -Instead of having Sleep for displayPlaylist, figure out how to have the user hit enter instead of waiting (DONE)
--Improve the shuffle function to match the requirements of the PA
-	-This includes another function to generate a random order
+-Improve the shuffle function to match the requirements of the PA (DONE)
+	-This includes another function to generate a random order (DONE)
 -Check why delete isn't deleting properly (DONE)
 -Make test functions (2/3 done)
